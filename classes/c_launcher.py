@@ -15,6 +15,7 @@ class Launcher:
     page = 0
     current_page = 0
     total_pages = 0
+    per_page = 32
     
     apps = [
                 ['BpyTop sysmon', 'bpytop', 0],
@@ -36,10 +37,8 @@ class Launcher:
                 ['Spotify', 'spotify', 1],
                 ['Shortwave radio', 'shortwave', 1],
                 ['Dosbox', 'dosbox', 1],
-                ['Greed', 'greed', 0],
                 ['Sudoku', 'sudoku', 0],
                 ['Krita','krita', 1],
-                ['Disk analyzer', 'baobab', 1],
                 ['Blender', 'blender', 1],
                 ['DCSS', '~/dcss.sh', 1],
                 ['VCV Rack 2', '~/rack.sh', 1],
@@ -51,6 +50,7 @@ class Launcher:
                 ['Brave', 'brave-browser', 1],
                 ['Firefox', 'firefox', 1],
                 ['Spyder', 'spyder', 1],
+                ['Steam', 'steam', 1],
                 ['VLC player', 'vlc', 1],
            ]
 
@@ -93,21 +93,17 @@ class Launcher:
         self.menu_items.clear()
 
         # Build menu_items array from apps array, starting from offset
-        for i, app in enumerate(self.apps, start = self.current_page * 32):
+        for i, app in enumerate(self.apps, start = self.current_page + (self.per_page * self.current_page)):
 
             # clone the menu item from the apps array
-            self.menu_items.append(app)
+            if i < len(self.apps):
+                self.menu_items.append(self.apps[i])
             
             # Check if pointer exceeds the items for the current page
-            if i >= (self.current_page * 32 + 32):
+            if i >= (self.current_page * self.per_page + self.per_page):
                 break
 
-        print(self.apps)
-        print("A")
         self.assign_menu_keys()
-        print(self.apps)
-        print("B")
-        #exit()
 
 
 
@@ -118,8 +114,13 @@ class Launcher:
         -------------------------------------------------
         Returns None.
         """
-        for i in self.menu_items:
-            self.menu_items[i].append(self.menu_key[i])
+
+        for i, item in enumerate(self.menu_items):
+            if i < len(self.menu_key):
+                if len(self.menu_items[i]) <= 3:
+                    self.menu_items[i].append(self.menu_key[i])
+                else:
+                    self.menu_items[i][3] = self.menu_key[i]
 
 
 
