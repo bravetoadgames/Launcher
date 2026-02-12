@@ -5,7 +5,9 @@ import os
 
 class Launcher:
     """
-    DocString
+    -------------------------------------------------
+    
+    -------------------------------------------------
     """
 
     header_height = 9
@@ -48,6 +50,7 @@ class Launcher:
                 ['Brave', 'brave-browser', 1],
                 ['Firefox', 'firefox', 1],
                 ['Spyder', 'spyder', 1],
+                ['VLC player', 'vlc', 1]
            ]
 
     menu_key = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'A', 'B',
@@ -59,7 +62,15 @@ class Launcher:
 
 
     def __init__(self):
+        """
+        -------------------------------------------------
+        Initialize Launcher class
+        -------------------------------------------------
+        """
         self.apps.sort()
+        self.current_page = 0
+        self.set_current_page()
+        
         self.assign_menu_keys()
         
         # Determine the number of pages in the menu
@@ -69,12 +80,43 @@ class Launcher:
         
         self.pages = int(pages - 1)
         
-        self.current_page = 1
+
+
+
+    def set_current_page(self):
+        """
+        -------------------------------------------------
+        Adopt the menu items for the current active page
+        -------------------------------------------------
+        Returns
+        -------
+        None.
+
+        """
+        # Clean up the menu item array for current page
+        self.menu_item = []
+        
+        for i, app in enumerate(self.apps, start = self.current_page * 32):
+            
+            # clone the menu item from the apps array
+            self.menu_item.append(app)
+            
+            # Check if pointer exceeds the items for the current page
+            if i >= (len(self.apps) + ((self.current_page * 32) + 32)):
+                break
+            
+        # Debug data
+        print('elements processed: ' + str(i))
+        print(self.menu_item)
+        #exit()
+
 
 
     def assign_menu_keys(self):
         """
-
+        -------------------------------------------------
+        Assign menu keys to current page
+        -------------------------------------------------
         Returns
         -------
         None.
@@ -87,7 +129,9 @@ class Launcher:
 
     def print_menu(self):
         """
-
+        -------------------------------------------------
+        
+        -------------------------------------------------
         Returns
         -------
         None.
@@ -126,7 +170,9 @@ class Launcher:
 
     def print_line(self):
         """
+        -------------------------------------------------
         Print a dashed line
+        -------------------------------------------------
         """
         return '═' * 79
 
@@ -134,7 +180,9 @@ class Launcher:
 
     def launch(self, input_value):
         """
-
+        -------------------------------------------------
+        
+        -------------------------------------------------
         Parameters
         ----------
         input_value : Key pressed by user
@@ -157,7 +205,9 @@ class Launcher:
 
     def user_input(self):
         """
+        -------------------------------------------------
         Wait for user input and launch if input was given
+        -------------------------------------------------
         """
         i = input('>> ')
         i = i.upper()
@@ -193,7 +243,9 @@ class Launcher:
     # ---------------------------------------------------
     def set_color(self, cl):
         """
+        -------------------------------------------------
         Set color
+        -------------------------------------------------
         """
 
         escape_color = ""
@@ -229,6 +281,8 @@ class Launcher:
     # ---------------------------------------------------
     def print_pos(self, x, y, text):
         """
+        -------------------------------------------------
         Positional print
+        -------------------------------------------------
         """
         print(f"\033[{y};{x}H{text}")
