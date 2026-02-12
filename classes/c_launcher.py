@@ -15,6 +15,7 @@ class Launcher:
     page = 0
     current_page = 0
     total_pages = 0
+    per_page = 32
     
     apps = [
                 ['BpyTop sysmon', 'bpytop', 0],
@@ -92,13 +93,14 @@ class Launcher:
         self.menu_items.clear()
 
         # Build menu_items array from apps array, starting from offset
-        for i, app in enumerate(self.apps, start = self.current_page * 32):
+        for i, app in enumerate(self.apps, start = self.current_page + (self.per_page * self.current_page)):
 
             # clone the menu item from the apps array
-            self.menu_items.append(app)
+            if i < len(self.apps):
+                self.menu_items.append(self.apps[i])
             
             # Check if pointer exceeds the items for the current page
-            if i >= (self.current_page * 32 + 32):
+            if i >= (self.current_page * self.per_page + self.per_page):
                 break
 
         self.assign_menu_keys()
@@ -114,10 +116,12 @@ class Launcher:
         """
 
         for i, item in enumerate(self.menu_items):
-            if len(self.menu_items[i]) <= 3:
-                self.menu_items[i].append(self.menu_key[i])
-            else:
-                self.menu_items[i][3] = self.menu_key[i]
+            if i < len(self.menu_key):
+                if len(self.menu_items[i]) <= 3:
+                    self.menu_items[i].append(self.menu_key[i])
+                else:
+                    self.menu_items[i][3] = self.menu_key[i]
+
 
 
     def print_menu(self):
@@ -157,7 +161,6 @@ class Launcher:
             self.print_pos(67, 21, 'Page ' + str(self.current_page + 1) + ' of ' + str(self.total_pages + 1))
 
         self.print_pos(0, 22, self.print_line())
-        print(self.menu_items)
 
 
     def print_line(self):
