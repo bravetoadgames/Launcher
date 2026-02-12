@@ -20,3 +20,11 @@ classes/__pycache__/cLauncher.cpython-312.pyc
 .spyproject/config/workspace.ini
 
 *.pyc
+
+.spyproject/config/backups/codestyle.ini.bak
+
+.spyproject/config/backups/encoding.ini.bak
+
+.spyproject/config/backups/vcs.ini.bak
+
+.spyproject/config/backups/workspace.ini.bak
