@@ -102,12 +102,7 @@ class Launcher:
             if i >= (self.current_page * 32 + 32):
                 break
 
-        print(self.apps)
-        print("A")
         self.assign_menu_keys()
-        print(self.apps)
-        print("B")
-        #exit()
 
 
 
@@ -118,8 +113,10 @@ class Launcher:
         -------------------------------------------------
         Returns None.
         """
-        for i in self.menu_items:
-            self.menu_items[i].append(self.menu_key[i])
+        print(self.menu_items)
+
+        for i, item in enumerate(self.menu_items):
+            item.append(self.menu_key[i])
 
 
 
