@@ -108,7 +108,7 @@ class Launcher:
         # Debug data
         print('elements processed: ' + str(i))
         print(self.menu_item)
-        exit()
+        #exit()
 
 
 
