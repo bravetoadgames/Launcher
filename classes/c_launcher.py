@@ -51,7 +51,7 @@ class Launcher:
                 ['Brave', 'brave-browser', 1],
                 ['Firefox', 'firefox', 1],
                 ['Spyder', 'spyder', 1],
-                ['VLC player', 'vlc', 1]
+                ['VLC player', 'vlc', 1],
            ]
 
     menu_key = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'A', 'B',
@@ -70,16 +70,15 @@ class Launcher:
         """
         self.apps.sort()
         self.current_page = 0
-        self.set_current_page()
-        
-        self.assign_menu_keys()
-        
+
         # Determine the number of pages in the menu
         pages = len(self.apps) / 33
         if pages > int(pages):
             pages = int(pages) + 1
         self.total_pages = int(pages - 1)
 
+        self.set_current_page()
+        
 
 
     def set_current_page(self):
@@ -89,17 +88,26 @@ class Launcher:
         -------------------------------------------------
         Returns None.
         """
+
         # Clean up the menu item array for current page
-        self.menu_items = []
-        
+        self.menu_items.clear()
+
+        # Build menu_items array from apps array, starting from offset
         for i, app in enumerate(self.apps, start = self.current_page * 32):
-            
+
             # clone the menu item from the apps array
             self.menu_items.append(app)
             
             # Check if pointer exceeds the items for the current page
             if i >= (self.current_page * 32 + 32):
                 break
+
+        print(self.apps)
+        print("A")
+        self.assign_menu_keys()
+        print(self.apps)
+        print("B")
+        #exit()
 
 
 
@@ -110,7 +118,7 @@ class Launcher:
         -------------------------------------------------
         Returns None.
         """
-        for i, item in enumerate(self.menu_items):
+        for i in self.menu_items:
             self.menu_items[i].append(self.menu_key[i])
 
 
@@ -118,7 +126,7 @@ class Launcher:
     def print_menu(self):
         """
         -------------------------------------------------
-        
+        Print all menu items on screen
         -------------------------------------------------
         Returns None.
         """
@@ -152,7 +160,6 @@ class Launcher:
             self.print_pos(67, 21, 'Page ' + str(self.current_page + 1) + ' of ' + str(self.total_pages + 1))
 
         self.print_pos(0, 22, self.print_line())
-
 
 
     def print_line(self):
@@ -203,10 +210,16 @@ class Launcher:
             if i == "Q":
                 os.system('clear')
                 self.launcher_exit = True
-            elif i == "." and self.current_page < self.total_pages:
+            elif i == ".":
                 self.current_page += 1
-            elif i == "," and self.current_page > 0:
+                if self.current_page > self.total_pages:
+                    self.current_page = 0
+                self.set_current_page()
+            elif i == ",":
                 self.current_page -= 1
+                if self.current_page < 0:
+                    self.current_page = self.total_pages
+                self.set_current_page()
             else:
                 self.launch(i)
 
