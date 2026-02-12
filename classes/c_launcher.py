@@ -50,6 +50,7 @@ class Launcher:
                 ['Brave', 'brave-browser', 1],
                 ['Firefox', 'firefox', 1],
                 ['Spyder', 'spyder', 1],
+                ['VLC player', 'vlc', 1]
            ]
 
     menu_key = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'A', 'B',
@@ -63,10 +64,11 @@ class Launcher:
     def __init__(self):
         """
         -------------------------------------------------
-        
+        Initialize Launcher class
         -------------------------------------------------
         """
         self.apps.sort()
+        self.current_page = 0
         self.set_current_page()
         
         self.assign_menu_keys()
@@ -78,24 +80,36 @@ class Launcher:
         
         self.pages = int(pages - 1)
         
-        self.current_page = 1
 
 
 
     def set_current_page(self):
         """
         -------------------------------------------------
-        
+        Adopt the menu items for the current active page
         -------------------------------------------------
         Returns
         -------
         None.
 
         """
+        # Clean up the menu item array for current page
         self.menu_item = []
         
-        for i, app in enumerate(self.apps):
+        for i, app in enumerate(self.apps, start = self.current_page * 32):
+            
+            # clone the menu item from the apps array
             self.menu_item.append(app)
+            
+            # Check if pointer exceeds the items for the current page
+            if i >= (len(self.apps) + ((self.current_page * 32) + 32)):
+                break
+            
+        # Debug data
+        print('elements processed: ' + str(i))
+        print(self.menu_item)
+        exit()
+
 
 
     def assign_menu_keys(self):
