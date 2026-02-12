@@ -36,10 +36,8 @@ class Launcher:
                 ['Spotify', 'spotify', 1],
                 ['Shortwave radio', 'shortwave', 1],
                 ['Dosbox', 'dosbox', 1],
-                ['Greed', 'greed', 0],
                 ['Sudoku', 'sudoku', 0],
                 ['Krita','krita', 1],
-                ['Disk analyzer', 'baobab', 1],
                 ['Blender', 'blender', 1],
                 ['DCSS', '~/dcss.sh', 1],
                 ['VCV Rack 2', '~/rack.sh', 1],
@@ -51,7 +49,7 @@ class Launcher:
                 ['Brave', 'brave-browser', 1],
                 ['Firefox', 'firefox', 1],
                 ['Spyder', 'spyder', 1],
-                ['VLC player', 'vlc', 1],
+                ['Steam', 'steam', 1],
            ]
 
     menu_key = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'A', 'B',
