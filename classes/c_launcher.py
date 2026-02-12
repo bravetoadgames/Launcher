@@ -50,6 +50,7 @@ class Launcher:
                 ['Firefox', 'firefox', 1],
                 ['Spyder', 'spyder', 1],
                 ['Steam', 'steam', 1],
+                ['VLC player', 'vlc', 1],
            ]
 
     menu_key = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'A', 'B',
