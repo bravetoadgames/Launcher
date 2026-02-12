@@ -5,7 +5,9 @@ import os
 
 class Launcher:
     """
-    DocString
+    -------------------------------------------------
+    
+    -------------------------------------------------
     """
 
     header_height = 9
@@ -59,7 +61,14 @@ class Launcher:
 
 
     def __init__(self):
+        """
+        -------------------------------------------------
+        
+        -------------------------------------------------
+        """
         self.apps.sort()
+        self.set_current_page()
+        
         self.assign_menu_keys()
         
         # Determine the number of pages in the menu
@@ -72,9 +81,28 @@ class Launcher:
         self.current_page = 1
 
 
+
+    def set_current_page(self):
+        """
+        -------------------------------------------------
+        
+        -------------------------------------------------
+        Returns
+        -------
+        None.
+
+        """
+        self.menu_item = []
+        
+        for i, app in enumerate(self.apps):
+            self.menu_item.append(app)
+
+
     def assign_menu_keys(self):
         """
-
+        -------------------------------------------------
+        Assign menu keys to current page
+        -------------------------------------------------
         Returns
         -------
         None.
@@ -87,7 +115,9 @@ class Launcher:
 
     def print_menu(self):
         """
-
+        -------------------------------------------------
+        
+        -------------------------------------------------
         Returns
         -------
         None.
@@ -126,7 +156,9 @@ class Launcher:
 
     def print_line(self):
         """
+        -------------------------------------------------
         Print a dashed line
+        -------------------------------------------------
         """
         return '═' * 79
 
@@ -134,7 +166,9 @@ class Launcher:
 
     def launch(self, input_value):
         """
-
+        -------------------------------------------------
+        
+        -------------------------------------------------
         Parameters
         ----------
         input_value : Key pressed by user
@@ -157,7 +191,9 @@ class Launcher:
 
     def user_input(self):
         """
+        -------------------------------------------------
         Wait for user input and launch if input was given
+        -------------------------------------------------
         """
         i = input('>> ')
         i = i.upper()
@@ -193,7 +229,9 @@ class Launcher:
     # ---------------------------------------------------
     def set_color(self, cl):
         """
+        -------------------------------------------------
         Set color
+        -------------------------------------------------
         """
 
         escape_color = ""
@@ -229,6 +267,8 @@ class Launcher:
     # ---------------------------------------------------
     def print_pos(self, x, y, text):
         """
+        -------------------------------------------------
         Positional print
+        -------------------------------------------------
         """
         print(f"\033[{y};{x}H{text}")
