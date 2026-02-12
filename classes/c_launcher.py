@@ -50,6 +50,7 @@ class Launcher:
                 ['Firefox', 'firefox', 1],
                 ['Spyder', 'spyder', 1],
                 ['Steam', 'steam', 1],
+                ['VLC player', 'vlc', 1],
            ]
 
     menu_key = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'A', 'B',
@@ -111,11 +112,12 @@ class Launcher:
         -------------------------------------------------
         Returns None.
         """
-        print(self.menu_items)
 
         for i, item in enumerate(self.menu_items):
-            item.append(self.menu_key[i])
-
+            if len(self.menu_items[i]) <= 3:
+                self.menu_items[i].append(self.menu_key[i])
+            else:
+                self.menu_items[i][3] = self.menu_key[i]
 
 
     def print_menu(self):
@@ -155,6 +157,7 @@ class Launcher:
             self.print_pos(67, 21, 'Page ' + str(self.current_page + 1) + ' of ' + str(self.total_pages + 1))
 
         self.print_pos(0, 22, self.print_line())
+        print(self.menu_items)
 
 
     def print_line(self):
