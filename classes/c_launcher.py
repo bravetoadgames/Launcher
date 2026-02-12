@@ -14,6 +14,7 @@ class Launcher:
     launcher_exit = False
     page = 0
     current_page = 0
+    total_pages = 0
     
     apps = [
                 ['BpyTop sysmon', 'bpytop', 0],
@@ -57,7 +58,7 @@ class Launcher:
                 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
                 'O', 'P', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']           
 
-    menu_item = []
+    menu_items = []
 
 
 
@@ -77,9 +78,7 @@ class Launcher:
         pages = len(self.apps) / 33
         if pages > int(pages):
             pages = int(pages) + 1
-        
-        self.pages = int(pages - 1)
-        
+        self.total_pages = int(pages - 1)
 
 
 
@@ -88,27 +87,19 @@ class Launcher:
         -------------------------------------------------
         Adopt the menu items for the current active page
         -------------------------------------------------
-        Returns
-        -------
-        None.
-
+        Returns None.
         """
         # Clean up the menu item array for current page
-        self.menu_item = []
+        self.menu_items = []
         
         for i, app in enumerate(self.apps, start = self.current_page * 32):
             
             # clone the menu item from the apps array
-            self.menu_item.append(app)
+            self.menu_items.append(app)
             
             # Check if pointer exceeds the items for the current page
-            if i >= (len(self.apps) + ((self.current_page * 32) + 32)):
+            if i >= (self.current_page * 32 + 32):
                 break
-            
-        # Debug data
-        print('elements processed: ' + str(i))
-        print(self.menu_item)
-        #exit()
 
 
 
@@ -117,13 +108,10 @@ class Launcher:
         -------------------------------------------------
         Assign menu keys to current page
         -------------------------------------------------
-        Returns
-        -------
-        None.
-
+        Returns None.
         """
-        for i, app in enumerate(self.apps):
-            self.apps[i].append(self.menu_key[i])
+        for i, item in enumerate(self.menu_items):
+            self.menu_items[i].append(self.menu_key[i])
 
 
 
@@ -132,10 +120,7 @@ class Launcher:
         -------------------------------------------------
         
         -------------------------------------------------
-        Returns
-        -------
-        None.
-
+        Returns None.
         """
         x = 0
         y = self.header_height
@@ -143,10 +128,10 @@ class Launcher:
         os.system('clear')
         self.print_title()
 
-        for i, app in enumerate(self.apps):
+        for i, item in enumerate(self.menu_items):
             menu_line = self.set_color('green')
-            menu_line += app[3]
-            menu_line += ' - ' + app[0]
+            menu_line += item[3]
+            menu_line += ' - ' + item[0]
             menu_line += self.set_color('reset')
             self.print_pos(x, y, menu_line)
 
@@ -161,9 +146,11 @@ class Launcher:
 
         self.print_pos(0, 20, self.print_line())
         print(self.set_color('red') + 'Q - Quit' + self.set_color('reset'))
-        if self.pages > 0:
+        
+        if self.total_pages > 0:
             self.print_pos(20, 21, 'Previous page [,] - Next page [.] ')
-            self.print_pos(67, 21, 'Page ' + str(self.current_page + 1) + ' of ' + str(self.pages + 1))
+            self.print_pos(67, 21, 'Page ' + str(self.current_page + 1) + ' of ' + str(self.total_pages + 1))
+
         self.print_pos(0, 22, self.print_line())
 
 
@@ -192,13 +179,13 @@ class Launcher:
         None.
 
         """
-        for i, app in enumerate(self.apps):
-            if app[3] == input_value:
+        for i, item in enumerate(self.menu_items):
+            if item[3] == input_value:
                 os.system('clear')
-                if app[2] == 1:
-                    os.system('nohup ' + app[1] + ' > /dev/null 2>&1 &')
+                if item[2] == 1:
+                    os.system('nohup ' + item[1] + ' > /dev/null 2>&1 &')
                 else:
-                    os.system(app[1])
+                    os.system(item[1])
                 break
 
 
@@ -216,6 +203,10 @@ class Launcher:
             if i == "Q":
                 os.system('clear')
                 self.launcher_exit = True
+            elif i == "." and self.current_page < self.total_pages:
+                self.current_page += 1
+            elif i == "," and self.current_page > 0:
+                self.current_page -= 1
             else:
                 self.launch(i)
 
@@ -238,13 +229,10 @@ class Launcher:
 
 
 
-    # ---------------------------------------------------
-    # Return a colorcode to print
-    # ---------------------------------------------------
     def set_color(self, cl):
         """
         -------------------------------------------------
-        Set color
+        Return a colorcode to print
         -------------------------------------------------
         """
 
@@ -276,9 +264,6 @@ class Launcher:
 
 
 
-    # ---------------------------------------------------
-    # Print on an X / Y position on-screen
-    # ---------------------------------------------------
     def print_pos(self, x, y, text):
         """
         -------------------------------------------------
