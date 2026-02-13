@@ -267,10 +267,10 @@ class Launcher:
         -------------------------------------------------
         """
         print(self.print_line())
-        print(self.set_color('blue') + '                   _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _')
-        print('                   L I N U X   L A U N C H E R   1 . 0')
-        print(self.set_color('reset'))
         print()
+        print(self.set_color('blue') + '                   L I N U X   L A U N C H E R   1 . 0')
+        print('                   _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _')
+        print(self.set_color('reset'))
         print(self.print_line())
 
 
