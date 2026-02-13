@@ -21,71 +21,71 @@ class Launcher:
     
     apps = [
                 # Internet
-                ['Brave', 'brave-browser', 1],
-                ['Chrome', 'google-chrome', 1],
-                ['FileZilla', 'filezilla', 1],
-                ['Firefox', 'firefox', 1],
-                ['Soulseek', '~/soulseek.sh', 1],
-                ['SyncTerm', 'syncterm', 1],
+                ['red', 'Brave', 'brave-browser', 1],
+                ['red', 'Chrome', 'google-chrome', 1],
+                ['red', 'FileZilla', 'filezilla', 1],
+                ['red', 'Firefox', 'firefox', 1],
+                ['red', 'Soulseek', '~/soulseek.sh', 1],
+                ['red', 'SyncTerm', 'syncterm', 1],
                 
                 # Emulators
-                ['Altirra', '~/altirra.sh', 1],
-                ['Atari 800XL', 'atari800', 1],
-                ['Commodore 64', 'flatpak run net.sf.VICE', 1],
-                ['Commodore Amiga', 'flatpak run com.blitterstudio.amiberry', 1],
-                ['Dosbox', 'dosbox', 1],
+                ['green', 'Altirra', '~/altirra.sh', 1],
+                ['green', 'Atari 800XL', 'atari800', 1],
+                ['green', 'Commodore 64', 'flatpak run net.sf.VICE', 1],
+                ['green', 'Commodore Amiga', 'flatpak run com.blitterstudio.amiberry', 1],
+                ['green', 'Dosbox', 'dosbox', 1],
 
                 # Programming
-                ['GitKraken', 'gitkraken', 1],
-                ['Godot engine', '~/godot.sh', 1],
-                ['Pico-8', '~/pico.sh', 1],
-                ['Spyder', 'spyder', 1],
-                ['Unity hub', 'unityhub', 1],
+                ['blue', 'GitKraken', 'gitkraken', 1],
+                ['blue', 'Godot engine', '~/godot.sh', 1],
+                ['blue', 'Pico-8', '~/pico.sh', 1],
+                ['blue', 'Spyder', 'spyder', 1],
+                ['blue', 'Unity hub', 'unityhub', 1],
 
                 # Editing tools
-                ['Aseprite', '~/.steam/steam/steamapps/common/Aseprite/aseprite', 1],
-                ['Audacity', 'audacity', 1],
-                ['Blender', 'blender', 1],
-                ['Krita','krita', 1],
-                ['MagicaVoxel', '~/magicavoxel.sh', 1],
-                ['Milkytracker', 'milkytracker', 1],
-                ['OBS video recording','obs', 1],
-                ['Openshot video', 'openshot-qt', 1],
-                ['VCV Rack 2', '~/rack.sh', 1],
+                ['yellow', 'Aseprite', '~/.steam/steam/steamapps/common/Aseprite/aseprite', 1],
+                ['yellow', 'Audacity', 'audacity', 1],
+                ['yellow', 'Blender', 'blender', 1],
+                ['yellow', 'Krita','krita', 1],
+                ['yellow', 'MagicaVoxel', '~/magicavoxel.sh', 1],
+                ['yellow', 'Milkytracker', 'milkytracker', 1],
+                ['yellow', 'OBS video recording','obs', 1],
+                ['yellow', 'Openshot video', 'openshot-qt', 1],
+                ['yellow', 'VCV Rack 2', '~/rack.sh', 1],
 
                 # Media 
-                ['MOC mediaplayer', 'gnome-terminal -- mocp', 0],
-                ['Shortwave radio', 'shortwave', 1],
-                ['Spotify', 'spotify', 1],
-                ['VLC player', 'vlc', 1],
+                ['cyan', 'MOC mediaplayer', 'gnome-terminal -- mocp', 0],
+                ['cyan', 'Shortwave radio', 'shortwave', 1],
+                ['cyan', 'Spotify', 'spotify', 1],
+                ['cyan', 'VLC player', 'vlc', 1],
                 
                 # Games
-                ['DCSS', '~/dcss.sh', 1],
-                ['Famaze', 'wine ~/.steam/steam/steamapps/common/Famaze/Famaze.exe', 1],
-                ['Poker TH', 'pokerth', 1],
-                ['Rolling lines', 'wine ~/.steam/steam/steamapps/common/Rolling\ Line/RollingLine.exe', 1],
-                ['Sophie\'s dice', '~/.steam/steam/steamapps/common/Sophies\ Dice/Sophies\ Dice.x86_64', 1],
-                ['Sudoku', 'gnome-terminal -- sudoku', 0],
-                ['Ultimate Racing 2D', 'wine ~/.steam/steam/steamapps/common/Ultimate\ Racing\ 2D/Ultimate_Racing_2D.exe', 1],
+                ['purple', 'DCSS', '~/dcss.sh', 1],
+                ['purple', 'Famaze', 'wine ~/.steam/steam/steamapps/common/Famaze/Famaze.exe', 1],
+                ['purple', 'Poker TH', 'pokerth', 1],
+                ['purple', 'Rolling lines', 'wine ~/.steam/steam/steamapps/common/Rolling\ Line/RollingLine.exe', 1],
+                ['purple', 'Sophie\'s dice', '~/.steam/steam/steamapps/common/Sophies\ Dice/Sophies\ Dice.x86_64', 1],
+                ['purple', 'Sudoku', 'gnome-terminal -- sudoku', 0],
+                ['purple', 'Ultimate Racing 2D', 'wine ~/.steam/steam/steamapps/common/Ultimate\ Racing\ 2D/Ultimate_Racing_2D.exe', 1],
                 
                 # Utilities
-                ['BpyTop sysmon', 'gnome-terminal -- bpytop', 0],
-                ['Calculator', 'gnome-calculator', 1],
-                ['GcStar database', 'gcstar', 1],
-                ['KeePass', 'keepass2', 1],
-                ['LibreOffice Calc', 'localc', 1],
-                ['LibreOffice Writer', 'lowriter', 1],
-                ['Puddletag', 'puddletag', 1],
-                ['Settings', 'gnome-control-center', 1],
+                ['red', 'BpyTop sysmon', 'gnome-terminal -- bpytop', 0],
+                ['red', 'Calculator', 'gnome-calculator', 1],
+                ['red', 'GcStar database', 'gcstar', 1],
+                ['red', 'KeePass', 'keepass2', 1],
+                ['red', 'LibreOffice Calc', 'localc', 1],
+                ['red', 'LibreOffice Writer', 'lowriter', 1],
+                ['red', 'Puddletag', 'puddletag', 1],
+                ['red', 'Settings', 'gnome-control-center', 1],
 
-                ['Cool retro term', 'cool-retro-term', 1],
-                ['Matrix fx', 'gnome-terminal -- cmatrix', 0],
-                ['VM setup', 'gnome-terminal -- ~/Ctools/vm.sh', 0],
-                ['VirtualBox', 'virtualbox', 1],
+                ['green', 'Cool retro term', 'cool-retro-term', 1],
+                ['green', 'Matrix fx', 'gnome-terminal -- cmatrix', 0],
+                ['green', 'VM setup', 'gnome-terminal -- ~/Ctools/vm.sh', 0],
+                ['green', 'VirtualBox', 'virtualbox', 1],
 
                 # Gaming portals
-                ['Heroic launcher', 'flatpak run com.heroicgameslauncher.hgl', 1],
-                ['Steam', 'steam', 1],
+                ['blue', 'Heroic launcher', 'flatpak run com.heroicgameslauncher.hgl', 1],
+                ['blue', 'Steam', 'steam', 1],
            ]
 
     menu_key = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'A', 'B',
@@ -151,10 +151,10 @@ class Launcher:
 
         for i, item in enumerate(self.menu_items):
             if i < len(self.menu_key):
-                if len(self.menu_items[i]) <= 3:
+                if len(self.menu_items[i]) <= 4:
                     self.menu_items[i].append(self.menu_key[i])
                 else:
-                    self.menu_items[i][3] = self.menu_key[i]
+                    self.menu_items[i][4] = self.menu_key[i]
 
 
 
@@ -172,9 +172,9 @@ class Launcher:
         self.print_title()
 
         for i, item in enumerate(self.menu_items):
-            menu_line = self.set_color('green')
-            menu_line += item[3]
-            menu_line += ' - ' + item[0]
+            menu_line = self.set_color('white')
+            menu_line += item[4]
+            menu_line += ' - ' + self.set_color(item[0]) + item[1]
             menu_line += self.set_color('reset')
             self.print_pos(x, y, menu_line)
 
@@ -222,12 +222,12 @@ class Launcher:
 
         """
         for i, item in enumerate(self.menu_items):
-            if item[3] == input_value:
+            if item[4] == input_value:
                 os.system('clear')
-                if item[2] == 1:
-                    os.system('nohup ' + item[1] + ' > /dev/null 2>&1 &')
+                if item[3] == 1:
+                    os.system('nohup ' + item[2] + ' > /dev/null 2>&1 &')
                 else:
-                    os.system(item[1])
+                    os.system(item[2])
                 break
 
 
@@ -268,7 +268,7 @@ class Launcher:
         """
         print(self.print_line())
         print()
-        print(self.set_color('blue') + '                   L I N U X   L A U N C H E R   1 . 0')
+        print(self.set_color('blue') + '                   L I N U X   L A U N C H E R   1 . 1')
         print('                   _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _')
         print(self.set_color('reset'))
         print(self.print_line())
