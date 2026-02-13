@@ -10,63 +10,80 @@ class Launcher:
     -------------------------------------------------
     """
 
-    header_height = 9
     launcher_exit = False
     page = 0
     current_page = 0
     total_pages = 0
     per_page = 32
     
+    offset_x = 0
+    offset_y = 8
+    
     apps = [
-                ['BpyTop sysmon', 'gnome-terminal -- bpytop', 0],
-                ['MOC mediaplayer', 'gnome-terminal -- mocp', 0],
-                ['Pico-8', '~/pico.sh', 1],
+                # Internet
+                ['Brave', 'brave-browser', 1],
+                ['Chrome', 'google-chrome', 1],
+                ['FileZilla', 'filezilla', 1],
+                ['Firefox', 'firefox', 1],
+                ['Soulseek', '~/soulseek.sh', 1],
+                ['SyncTerm', 'syncterm', 1],
+                
+                # Emulators
+                ['Altirra', '~/altirra.sh', 1],
                 ['Atari 800XL', 'atari800', 1],
                 ['Commodore 64', 'flatpak run net.sf.VICE', 1],
                 ['Commodore Amiga', 'flatpak run com.blitterstudio.amiberry', 1],
-                ['Openshot video', 'openshot-qt', 1],
-                ['OBS video recording','obs', 1],
-                ['LibreOffice Writer', 'lowriter', 1],
-                ['LibreOffice Calc', 'localc', 1],
-                ['GcStar database', 'gcstar', 1],
-                ['VirtualBox', 'virtualbox', 1],
-                ['KeePass', 'keepass2', 1],
-                ['VM setup', 'gnome-terminal -- ~/Ctools/vm.sh', 0],
-                ['Poker TH', 'pokerth', 1],
-                ['GitKraken', 'gitkraken', 1],
-                ['Spotify', 'spotify', 1],
-                ['Shortwave radio', 'shortwave', 1],
                 ['Dosbox', 'dosbox', 1],
-                ['Sudoku', 'gnome-terminal -- sudoku', 0],
-                ['Krita','krita', 1],
-                ['Blender', 'blender', 1],
-                ['DCSS', '~/dcss.sh', 1],
-                ['VCV Rack 2', '~/rack.sh', 1],
-                ['Soulseek', '~/soulseek.sh', 1],
-                ['Chrome', 'google-chrome', 1],
-                ['MagicaVoxel', '~/magicavoxel.sh', 1],
-                ['Altirra', '~/altirra.sh', 1],
-                ['Audacity', 'audacity', 1],
-                ['Brave', 'brave-browser', 1],
-                ['Firefox', 'firefox', 1],
-                ['Spyder', 'spyder', 1],
-                ['Steam', 'steam', 1],
-                ['VLC player', 'vlc', 1],
-                ['SyncTerm', 'syncterm', 1],
-                ['FileZilla', 'filezilla', 1],
-                ['Heroic launcher', 'flatpak run com.heroicgameslauncher.hgl', 1],
-                ['Unity hub', 'unityhub', 1],
+
+                # Programming
+                ['GitKraken', 'gitkraken', 1],
                 ['Godot engine', '~/godot.sh', 1],
+                ['Pico-8', '~/pico.sh', 1],
+                ['Spyder', 'spyder', 1],
+                ['Unity hub', 'unityhub', 1],
+
+                # Editing tools
                 ['Aseprite', '~/.steam/steam/steamapps/common/Aseprite/aseprite', 1],
-                ['Sophie\'s dice', '~/.steam/steam/steamapps/common/Sophies\ Dice/Sophies\ Dice.x86_64', 1],
-                ['Famaze', 'wine ~/.steam/steam/steamapps/common/Famaze/Famaze.exe', 1],
-                ['Rolling lines', 'wine ~/.steam/steam/steamapps/common/Rolling\ Line/RollingLine.exe', 1],
-                ['Matrix fx', 'gnome-terminal -- cmatrix', 0],
-                ['Calculator', 'gnome-calculator', 1],
-                ['Settings', 'gnome-control-center', 1],
+                ['Audacity', 'audacity', 1],
+                ['Blender', 'blender', 1],
+                ['Krita','krita', 1],
+                ['MagicaVoxel', '~/magicavoxel.sh', 1],
                 ['Milkytracker', 'milkytracker', 1],
-                ['Puddletag', 'puddletag', 1],
+                ['OBS video recording','obs', 1],
+                ['Openshot video', 'openshot-qt', 1],
+                ['VCV Rack 2', '~/rack.sh', 1],
+
+                # Media 
+                ['MOC mediaplayer', 'gnome-terminal -- mocp', 0],
+                ['Shortwave radio', 'shortwave', 1],
+                ['Spotify', 'spotify', 1],
+                ['VLC player', 'vlc', 1],
+                
+                # Games
+                ['DCSS', '~/dcss.sh', 1],
+                ['Famaze', 'wine ~/.steam/steam/steamapps/common/Famaze/Famaze.exe', 1],
+                ['Poker TH', 'pokerth', 1],
+                ['Rolling lines', 'wine ~/.steam/steam/steamapps/common/Rolling\ Line/RollingLine.exe', 1],
+                ['Sophie\'s dice', '~/.steam/steam/steamapps/common/Sophies\ Dice/Sophies\ Dice.x86_64', 1],
+                ['Sudoku', 'gnome-terminal -- sudoku', 0],
+                ['Ultimate Racing 2D', 'wine ~/.steam/steam/steamapps/common/Ultimate\ Racing\ 2D/Ultimate_Racing_2D.exe', 1],
+                
+                # Utilities
+                ['BpyTop sysmon', 'gnome-terminal -- bpytop', 0],
+                ['Calculator', 'gnome-calculator', 1],
+                ['KeePass', 'keepass2', 1],
+                ['LibreOffice Calc', 'localc', 1],
+                ['LibreOffice Writer', 'lowriter', 1],
+
                 ['Cool retro term', 'cool-retro-term', 1],
+                ['GcStar database', 'gcstar', 1],
+                ['Heroic launcher', 'flatpak run com.heroicgameslauncher.hgl', 1],
+                ['Matrix fx', 'gnome-terminal -- cmatrix', 0],
+                ['Puddletag', 'puddletag', 1],
+                ['Settings', 'gnome-control-center', 1],
+                ['Steam', 'steam', 1],
+                ['VM setup', 'gnome-terminal -- ~/Ctools/vm.sh', 0],
+                ['VirtualBox', 'virtualbox', 1],
            ]
 
     menu_key = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'A', 'B',
@@ -83,7 +100,7 @@ class Launcher:
         Initialize Launcher class
         -------------------------------------------------
         """
-        self.apps.sort()
+        #self.apps.sort()
         self.current_page = 0
 
         # Determine the number of pages in the menu
@@ -146,8 +163,8 @@ class Launcher:
         -------------------------------------------------
         Returns None.
         """
-        x = 0
-        y = self.header_height
+        x = self.offset_x
+        y = self.offset_y
 
         os.system('clear')
         self.print_title()
@@ -161,8 +178,8 @@ class Launcher:
 
             y = y + 1
 
-            if y > self.header_height + 10:
-                y = self.header_height
+            if y > self.offset_y + 10:
+                y = self.offset_y
                 if x == 0:
                     x = 27
                 elif x == 27:
@@ -248,12 +265,10 @@ class Launcher:
         -------------------------------------------------
         """
         print(self.print_line())
-        print(self.set_color('blue') + '      ██╗      █████╗ ██╗   ██╗███╗   ██╗ ██████╗██╗  ██╗███████╗██████╗ ')
-        print('      ██║     ██╔══██╗██║   ██║████╗  ██║██╔════╝██║  ██║██╔════╝██╔══██╗')
-        print('      ██║     ███████║██║   ██║██╔██╗ ██║██║     ███████║█████╗  ██████╔╝')
-        print('      ██║     ██╔══██║██║   ██║██║╚██╗██║██║     ██╔══██║██╔══╝  ██╔══██╗')
-        print('      ███████╗██║  ██║╚██████╔╝██║ ╚████║╚██████╗██║  ██║███████╗██║  ██║')
-        print('      ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝' + self.set_color('reset'))
+        print(self.set_color('blue') + '                   _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _')
+        print('                   L I N U X   L A U N C H E R   1 . 0')
+        print(self.set_color('reset'))
+        print()
         print(self.print_line())
 
 
