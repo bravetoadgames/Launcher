@@ -71,19 +71,21 @@ class Launcher:
                 # Utilities
                 ['BpyTop sysmon', 'gnome-terminal -- bpytop', 0],
                 ['Calculator', 'gnome-calculator', 1],
+                ['GcStar database', 'gcstar', 1],
                 ['KeePass', 'keepass2', 1],
                 ['LibreOffice Calc', 'localc', 1],
                 ['LibreOffice Writer', 'lowriter', 1],
-
-                ['Cool retro term', 'cool-retro-term', 1],
-                ['GcStar database', 'gcstar', 1],
-                ['Heroic launcher', 'flatpak run com.heroicgameslauncher.hgl', 1],
-                ['Matrix fx', 'gnome-terminal -- cmatrix', 0],
                 ['Puddletag', 'puddletag', 1],
                 ['Settings', 'gnome-control-center', 1],
-                ['Steam', 'steam', 1],
+
+                ['Cool retro term', 'cool-retro-term', 1],
+                ['Matrix fx', 'gnome-terminal -- cmatrix', 0],
                 ['VM setup', 'gnome-terminal -- ~/Ctools/vm.sh', 0],
                 ['VirtualBox', 'virtualbox', 1],
+
+                # Gaming portals
+                ['Heroic launcher', 'flatpak run com.heroicgameslauncher.hgl', 1],
+                ['Steam', 'steam', 1],
            ]
 
     menu_key = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'A', 'B',
