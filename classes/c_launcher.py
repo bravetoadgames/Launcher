@@ -39,6 +39,7 @@ class Launcher:
                 ['blue', 'GitKraken', 'gitkraken', 1],
                 ['blue', 'Godot engine', '~/godot.sh', 1],
                 ['blue', 'Pico-8', '~/pico.sh', 1],
+                ['blue','Planify', 'flatpak run io.github.alainm23.planify', 1],
                 ['blue', 'Spyder', 'spyder', 1],
                 ['blue', 'Unity hub', 'unityhub', 1],
 
@@ -62,12 +63,14 @@ class Launcher:
                 # Games
                 ['purple', 'DCSS', '~/dcss.sh', 1],
                 ['purple', 'Famaze', 'wine ~/.steam/steam/steamapps/common/Famaze/Famaze.exe', 1],
+                ['purple', 'Open TTD', 'openttd', 1],
                 ['purple', 'Poker TH', 'pokerth', 1],
                 ['purple', 'RPG in a Box', '~/.steam/steam/steamapps/common/RPG\ in\ a\ Box/rpginabox', 1],
                 ['purple', 'Rolling lines', 'wine ~/.steam/steam/steamapps/common/Rolling\ Line/RollingLine.exe', 1],
                 ['purple', 'Songs of Syx', '~/.steam/steam/steamapps/common/Songs\ of\ Syx/songsofsyx', 1],
                 ['purple', 'Sophie\'s dice', '~/.steam/steam/steamapps/common/Sophies\ Dice/Sophies\ Dice.x86_64', 1],
                 ['purple', 'Sudoku', 'gnome-terminal -- sudoku', 0],
+                ['purple', 'Transport Fever 2', '~/tf2.sh', 1],
                 ['purple', 'Ultimate Racing 2D', 'wine ~/.steam/steam/steamapps/common/Ultimate\ Racing\ 2D/Ultimate_Racing_2D.exe', 1],
                 
                 # Utilities
