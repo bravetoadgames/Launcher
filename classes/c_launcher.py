@@ -58,6 +58,7 @@ class Launcher:
                 ['cyan', 'MOC mediaplayer', 'gnome-terminal -- mocp', 0],
                 ['cyan', 'Shortwave radio', 'shortwave', 1],
                 ['cyan', 'Spotify', 'spotify', 1],
+                ['cyan', 'Strawberry', 'strawberry', 1],
                 ['cyan', 'VLC player', 'vlc', 1],
                 
                 # Games
@@ -88,9 +89,16 @@ class Launcher:
                 ['green', 'VM setup', 'gnome-terminal -- ~/Ctools/vm.sh', 0],
                 ['green', 'VirtualBox', 'virtualbox', 1],
 
+                # AI tools
+                ['blue', 'AI model Dee', 'gnome-terminal -- ~/./aiDee.sh', 0],
+                ['blue', 'AI model Gemma3:1b', 'gnome-terminal -- ~/./aiGemma31b.sh', 0],
+                ['blue', 'AI model Gemma3:4b', 'gnome-terminal -- ~/./aiGemma34b.sh', 0],
+                ['blue', 'AI model Mistral', 'gnome-terminal -- ~/./aiMistral.sh', 0],
+                ['blue', 'AI model Simone', 'gnome-terminal -- ~/./aiSimone.sh', 0],
+
                 # Gaming portals
-                ['blue', 'Heroic launcher', 'flatpak run com.heroicgameslauncher.hgl', 1],
-                ['blue', 'Steam', 'steam', 1],
+                ['yellow', 'Heroic launcher', 'flatpak run com.heroicgameslauncher.hgl', 1],
+                ['yellow', 'Steam', 'steam', 1],
            ]
 
     menu_key = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'A', 'B',
