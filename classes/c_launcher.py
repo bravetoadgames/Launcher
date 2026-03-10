@@ -1,23 +1,6 @@
-"""
-Zo dan
-"""
 import os
 
 class Launcher:
-    """
-    -------------------------------------------------
-    
-    -------------------------------------------------
-    """
-
-    launcher_exit = False
-    page = 0
-    current_page = 0
-    total_pages = 0
-    per_page = 32
-    
-    offset_x = 0
-    offset_y = 8
     
     apps = [
                 # Internet
@@ -111,80 +94,58 @@ class Launcher:
                 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
                 'O', 'P', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']           
 
-    menu_items = []
 
 
 
+    # ----------------------------------------------------------------------
+    # Initialize Launcher class
+    # ----------------------------------------------------------------------
     def __init__(self):
-        """
-        -------------------------------------------------
-        Initialize Launcher class
-        -------------------------------------------------
-        """
-        #self.apps.sort()
+        
+        # Define instance variables
         self.current_page = 0
+        self.launcher_exit = False
+        self.menu_items = []
+        self.offset_x = 0
+        self.offset_y = 8
+        self.page = 0
+        self.per_page = 32
+        self.total_pages = 0
 
         # Determine the number of pages in the menu
         pages = len(self.apps) / 33
         if pages > int(pages):
             pages = int(pages) + 1
-        self.total_pages = int(pages - 1)
 
-        self.set_current_page()
+        self.total_pages = int(pages - 1)
+        self.setCurrentPage()
         
 
 
     # ----------------------------------------------------------------------
-    # Adopt the menu items for the current active page
+    # Print a dashed line
     # ----------------------------------------------------------------------
-    def set_current_page(self):
-        # Clean up the menu item array for current page
-        self.menu_items.clear()
-
-        # Build menu_items array from apps array, starting from offset
-        for i, app in enumerate(self.apps, start = self.current_page + (self.per_page * self.current_page)):
-
-            # clone the menu item from the apps array
-            if i < len(self.apps):
-                self.menu_items.append(self.apps[i])
-            
-            # Check if pointer exceeds the items for the current page
-            if i >= (self.current_page * self.per_page + self.per_page):
-                break
-
-        self.assign_menu_keys()
-
-
-
-    # ----------------------------------------------------------------------
-    # Assign menu keys to current page
-    # ----------------------------------------------------------------------
-    def assign_menu_keys(self):
-        for i, item in enumerate(self.menu_items):
-            if i < len(self.menu_key):
-                if len(self.menu_items[i]) <= 4:
-                    self.menu_items[i].append(self.menu_key[i])
-                else:
-                    self.menu_items[i][4] = self.menu_key[i]
+    def showLine(self):
+        return '═' * 79
 
 
 
     # ----------------------------------------------------------------------
     # Print all menu items on screen
     # ----------------------------------------------------------------------
-    def print_menu(self):
+    def showMenu(self):
         x = self.offset_x
         y = self.offset_y
 
         os.system('clear')
-        self.print_title()
+        self.showTitle()
 
         for i, item in enumerate(self.menu_items):
-            menu_line = self.set_color('white')
+            menu_line = self.setColor('white')
             menu_line += item[4]
-            menu_line += ' - ' + self.set_color(item[0]) + item[1]
-            menu_line += self.set_color('reset')
-            self.print_pos(x, y, menu_line)
+            menu_line += ' - ' + self.setColor(item[0]) + item[1]
+            menu_line += self.setColor('reset')
+            self.showPositionalPrint(x, y, menu_line)
 
             y = y + 1
 
@@ -195,43 +156,41 @@ class Launcher:
                 elif x == 27:
                     x = 54
 
-        self.print_pos(0, 20, self.print_line())
-        print(self.set_color('red') + 'Q - Quit' + self.set_color('reset'))
+        self.showPositionalPrint(0, 20, self.showLine())
+        print(self.setColor('red') + 'Q - Quit' + self.setColor('reset'))
         
         if self.total_pages > 0:
-            self.print_pos(20, 21, 'Previous page [,] - Next page [.] ')
-            self.print_pos(67, 21, 'Page ' + str(self.current_page + 1) + ' of ' + str(self.total_pages + 1))
+            self.showPositionalPrint(20, 21, 'Previous page [,] - Next page [.] ')
+            self.showPositionalPrint(67, 21, 'Page ' + str(self.current_page + 1) + ' of ' + str(self.total_pages + 1))
 
-        self.print_pos(0, 22, self.print_line())
-
-
-    # ----------------------------------------------------------------------
-    # Print a dashed line
-    # ----------------------------------------------------------------------
-    def print_line(self):
-        return '═' * 79
+        self.showPositionalPrint(0, 22, self.showLine())
 
 
 
     # ----------------------------------------------------------------------
-    # Launch a selected program
+    # Positional print
     # ----------------------------------------------------------------------
-    def launch(self, input_value):
-        for i, item in enumerate(self.menu_items):
-            if item[4] == input_value:
-                os.system('clear')
-                if item[3] == 1:
-                    os.system('nohup ' + item[2] + ' > /dev/null 2>&1 &')
-                else:
-                    os.system(item[2])
-                break
+    def showPositionalPrint(self, x, y, text):
+        print(f"\033[{y};{x}H{text}")
+
+
+
+    # ----------------------------------------------------------------------
+    # Display a title text
+    # ----------------------------------------------------------------------
+    def showTitle(self):
+        print(self.showLine())
+        print('                   -----------------------------------')
+        print(self.setColor('blue') + '                   L I N U X   L A U N C H E R   1 . 2')
+        print('                   -----------------------------------' + self.setColor('reset'))
+        print(self.showLine())
 
 
 
     # ----------------------------------------------------------------------
     # Wait for user input and launch if input was given
     # ----------------------------------------------------------------------
-    def user_input(self):
+    def getUserInput(self):
         i = input('>> ')
         i = i.upper()
 
@@ -243,30 +202,33 @@ class Launcher:
                 self.current_page += 1
                 if self.current_page > self.total_pages:
                     self.current_page = 0
-                self.set_current_page()
+                self.setCurrentPage()
             elif i == ",":
                 self.current_page -= 1
                 if self.current_page < 0:
                     self.current_page = self.total_pages
-                self.set_current_page()
+                self.setCurrentPage()
             else:
-                self.launch(i)
+                self.setApplication(i)
 
 
 
     # ----------------------------------------------------------------------
-    # Display a title text
+    # Launch a selected program
     # ----------------------------------------------------------------------
-    def print_title(self):
-        print(self.print_line())
-        print('                   -----------------------------------')
-        print(self.set_color('blue') + '                   L I N U X   L A U N C H E R   1 . 2')
-        print('                   -----------------------------------' + self.set_color('reset'))
-        print(self.print_line())
+    def setApplication(self, input_value):
+        for i, item in enumerate(self.menu_items):
+            if item[4] == input_value:
+                os.system('clear')
+                if item[3] == 1:
+                    os.system('nohup ' + item[2] + ' > /dev/null 2>&1 &')
+                else:
+                    os.system(item[2])
+                break
 
 
 
-    def set_color(self, cl):
+    def setColor(self, cl):
         """
         -------------------------------------------------
         Return a colorcode to print
@@ -301,10 +263,38 @@ class Launcher:
 
 
 
-    def print_pos(self, x, y, text):
-        """
-        -------------------------------------------------
-        Positional print
-        -------------------------------------------------
-        """
-        print(f"\033[{y};{x}H{text}")
+    # ----------------------------------------------------------------------
+    # Adopt the menu items for the current active page
+    # ----------------------------------------------------------------------
+    def setCurrentPage(self):
+        # Clean up the menu item array for current page
+        self.menu_items.clear()
+
+        # Build menu_items array from apps array, starting from offset
+        for i, app in enumerate(self.apps, start = self.current_page + (self.per_page * self.current_page)):
+
+            # clone the menu item from the apps array
+            if i < len(self.apps):
+                self.menu_items.append(self.apps[i])
+            
+            # Check if pointer exceeds the items for the current page
+            if i >= (self.current_page * self.per_page + self.per_page):
+                break
+
+        self.setMenuKeys()
+
+
+    # ----------------------------------------------------------------------
+    # Assign menu keys to current page
+    # ----------------------------------------------------------------------
+    def setMenuKeys(self):
+        for i, item in enumerate(self.menu_items):
+            if i < len(self.menu_key):
+                if len(self.menu_items[i]) <= 4:
+                    self.menu_items[i].append(self.menu_key[i])
+                else:
+                    self.menu_items[i][4] = self.menu_key[i]
+
+
+
+
