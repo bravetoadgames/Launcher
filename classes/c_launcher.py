@@ -63,42 +63,48 @@ class Launcher:
                 
                 # Games
                 ['purple', 'DCSS', '~/dcss.sh', 1],
-                ['purple', 'Famaze', 'wine ~/.steam/steam/steamapps/common/Famaze/Famaze.exe', 1],
                 ['purple', 'Open TTD', 'openttd', 1],
+                ['purple', 'Palapeli', 'palapeli', 1],
                 ['purple', 'Poker TH', 'pokerth', 1],
                 ['purple', 'RPG in a Box', '~/.steam/steam/steamapps/common/RPG\ in\ a\ Box/rpginabox', 1],
-                ['purple', 'Rolling lines', 'wine ~/.steam/steam/steamapps/common/Rolling\ Line/RollingLine.exe', 1],
+                ['purple', 'Rolling line', 'wine ~/.steam/steam/steamapps/common/Rolling\ Line/RollingLine.exe', 1],
                 ['purple', 'Songs of Syx', '~/.steam/steam/steamapps/common/Songs\ of\ Syx/songsofsyx', 1],
                 ['purple', 'Sophie\'s dice', '~/.steam/steam/steamapps/common/Sophies\ Dice/Sophies\ Dice.x86_64', 1],
                 ['purple', 'Sudoku', 'gnome-terminal -- sudoku', 0],
                 ['purple', 'Transport Fever 2', '~/tf2.sh', 1],
                 ['purple', 'Ultimate Racing 2D', 'wine ~/.steam/steam/steamapps/common/Ultimate\ Racing\ 2D/Ultimate_Racing_2D.exe', 1],
                 
+                # Gaming portals
+                ['red', 'Heroic launcher', 'flatpak run com.heroicgameslauncher.hgl', 1],
+                ['red', 'Steam', 'steam', 1],
+                
                 # Utilities
-                ['red', 'BpyTop sysmon', 'gnome-terminal -- bpytop', 0],
-                ['red', 'Calculator', 'gnome-calculator', 1],
-                ['red', 'GcStar database', 'gcstar', 1],
-                ['red', 'KeePass', 'keepass2', 1],
-                ['red', 'LibreOffice Calc', 'localc', 1],
-                ['red', 'LibreOffice Writer', 'lowriter', 1],
-                ['red', 'Puddletag', 'puddletag', 1],
-                ['red', 'Settings', 'gnome-control-center', 1],
+                ['green', 'Baobab disk analyzer', 'baobab', 1],
+                ['green', 'BpyTop sysmon', 'gnome-terminal -- bpytop', 0],
+                ['green', 'GcStar database', 'gcstar', 1],
+                ['green', 'Gnome terminal', 'gnome-terminal --working-directory=~/', 1],
+                ['green', 'KeePass', 'keepass2', 1],
+                ['green', 'Puddletag', 'puddletag', 1],
+                ['green', 'Settings', 'gnome-control-center', 1],
+                ['green', 'Terminator', 'terminator --working-directory=~/', 1],
 
-                ['green', 'Cool retro term', 'cool-retro-term', 1],
-                ['green', 'Matrix fx', 'gnome-terminal -- cmatrix', 0],
-                ['green', 'VM setup', 'gnome-terminal -- ~/Ctools/vm.sh', 0],
-                ['green', 'VirtualBox', 'virtualbox', 1],
+                # Other tools
+                ['blue', 'Cool retro term', 'cool-retro-term', 1],
+                ['blue', 'Matrix fx', 'gnome-terminal -- cmatrix', 0],
+                ['blue', 'VM setup', 'gnome-terminal -- ~/Ctools/vm.sh', 0],
+                ['blue', 'VirtualBox', 'virtualbox', 1],
 
                 # AI tools
-                ['blue', 'AI model Dee', 'gnome-terminal -- ~/./aiDee.sh', 0],
-                ['blue', 'AI model Gemma3:1b', 'gnome-terminal -- ~/./aiGemma31b.sh', 0],
-                ['blue', 'AI model Gemma3:4b', 'gnome-terminal -- ~/./aiGemma34b.sh', 0],
-                ['blue', 'AI model Mistral', 'gnome-terminal -- ~/./aiMistral.sh', 0],
-                ['blue', 'AI model Simone', 'gnome-terminal -- ~/./aiSimone.sh', 0],
+                ['yellow', 'AI model Dee', 'gnome-terminal -- ~/./aiDee.sh', 0],
+                ['yellow', 'AI model Gemma3:1b', 'gnome-terminal -- ~/./aiGemma31b.sh', 0],
+                ['yellow', 'AI model Gemma3:4b', 'gnome-terminal -- ~/./aiGemma34b.sh', 0],
+                ['yellow', 'AI model Mistral', 'gnome-terminal -- ~/./aiMistral.sh', 0],
+                ['yellow', 'AI model Simone', 'gnome-terminal -- ~/./aiSimone.sh', 0],
 
-                # Gaming portals
-                ['yellow', 'Heroic launcher', 'flatpak run com.heroicgameslauncher.hgl', 1],
-                ['yellow', 'Steam', 'steam', 1],
+                # Office tools
+                ['cyan', 'Calculator', 'gnome-calculator', 1],
+                ['cyan', 'LibreOffice Calc', 'localc', 1],
+                ['cyan', 'LibreOffice Writer', 'lowriter', 1],
            ]
 
     menu_key = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'A', 'B',
@@ -128,14 +134,10 @@ class Launcher:
         
 
 
+    # ----------------------------------------------------------------------
+    # Adopt the menu items for the current active page
+    # ----------------------------------------------------------------------
     def set_current_page(self):
-        """
-        -------------------------------------------------
-        Adopt the menu items for the current active page
-        -------------------------------------------------
-        Returns None.
-        """
-
         # Clean up the menu item array for current page
         self.menu_items.clear()
 
@@ -154,14 +156,10 @@ class Launcher:
 
 
 
+    # ----------------------------------------------------------------------
+    # Assign menu keys to current page
+    # ----------------------------------------------------------------------
     def assign_menu_keys(self):
-        """
-        -------------------------------------------------
-        Assign menu keys to current page
-        -------------------------------------------------
-        Returns None.
-        """
-
         for i, item in enumerate(self.menu_items):
             if i < len(self.menu_key):
                 if len(self.menu_items[i]) <= 4:
@@ -171,13 +169,10 @@ class Launcher:
 
 
 
+    # ----------------------------------------------------------------------
+    # Print all menu items on screen
+    # ----------------------------------------------------------------------
     def print_menu(self):
-        """
-        -------------------------------------------------
-        Print all menu items on screen
-        -------------------------------------------------
-        Returns None.
-        """
         x = self.offset_x
         y = self.offset_y
 
@@ -210,30 +205,18 @@ class Launcher:
         self.print_pos(0, 22, self.print_line())
 
 
+    # ----------------------------------------------------------------------
+    # Print a dashed line
+    # ----------------------------------------------------------------------
     def print_line(self):
-        """
-        -------------------------------------------------
-        Print a dashed line
-        -------------------------------------------------
-        """
         return '═' * 79
 
 
 
+    # ----------------------------------------------------------------------
+    # Launch a selected program
+    # ----------------------------------------------------------------------
     def launch(self, input_value):
-        """
-        -------------------------------------------------
-        
-        -------------------------------------------------
-        Parameters
-        ----------
-        input_value : Key pressed by user
-
-        Returns
-        -------
-        None.
-
-        """
         for i, item in enumerate(self.menu_items):
             if item[4] == input_value:
                 os.system('clear')
@@ -245,12 +228,10 @@ class Launcher:
 
 
 
+    # ----------------------------------------------------------------------
+    # Wait for user input and launch if input was given
+    # ----------------------------------------------------------------------
     def user_input(self):
-        """
-        -------------------------------------------------
-        Wait for user input and launch if input was given
-        -------------------------------------------------
-        """
         i = input('>> ')
         i = i.upper()
 
@@ -273,17 +254,14 @@ class Launcher:
 
 
 
+    # ----------------------------------------------------------------------
+    # Display a title text
+    # ----------------------------------------------------------------------
     def print_title(self):
-        """
-        -------------------------------------------------
-        Display a title text
-        -------------------------------------------------
-        """
         print(self.print_line())
-        print()
-        print(self.set_color('blue') + '                   L I N U X   L A U N C H E R   1 . 1')
-        print('                   _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _')
-        print(self.set_color('reset'))
+        print('                   -----------------------------------')
+        print(self.set_color('blue') + '                   L I N U X   L A U N C H E R   1 . 2')
+        print('                   -----------------------------------' + self.set_color('reset'))
         print(self.print_line())
 
 
