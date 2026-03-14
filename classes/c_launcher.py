@@ -96,7 +96,7 @@ class Launcher:
     def showTitle(self):
         print(self.showLine())
         print('                   -----------------------------------')
-        print(self.setColor('blue') + '                   L I N U X   L A U N C H E R   1 . 2')
+        print(self.setColor('blue') + '                   L I N U X   L A U N C H E R   1 . 3')
         print('                   -----------------------------------' + self.setColor('reset'))
         print(self.showLine())
 
