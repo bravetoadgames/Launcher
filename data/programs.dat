@@ -39,7 +39,7 @@
 ['purple', 'RPG in a Box', '~/.steam/steam/steamapps/common/RPG\ in\ a\ Box/rpginabox', 1]
 ['purple', 'Rolling line', 'wine ~/.steam/steam/steamapps/common/Rolling\ Line/RollingLine.exe', 1]
 ['purple', 'Songs of Syx', '~/.steam/steam/steamapps/common/Songs\ of\ Syx/songsofsyx', 1]
-['purple', 'Sophie\'s dice', '~/.steam/steam/steamapps/common/Sophies\ Dice/Sophies\ Dice.x86_64', 1]
+['purple', "Sophie's dice", '~/.steam/steam/steamapps/common/Sophies\ Dice/Sophies\ Dice.x86_64', 1]
 ['purple', 'Sudoku', 'gnome-terminal -- sudoku', 0]
 ['purple', 'Transport Fever 2', '~/tf2.sh', 1]
 ['purple', 'Ultimate Racing 2D', 'wine ~/.steam/steam/steamapps/common/Ultimate\ Racing\ 2D/Ultimate_Racing_2D.exe', 1]

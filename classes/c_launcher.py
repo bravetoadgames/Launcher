@@ -214,7 +214,7 @@ class Launcher:
                 self.menu_items.append(self.apps[i])
 
             # Check if pointer exceeds the items for the current page
-            if i >= (self.current_page * self.per_page + self.per_page):
+            if i == (self.current_page * self.per_page + self.per_page - 1):
                 break
 
         self.setMenuKeys()
