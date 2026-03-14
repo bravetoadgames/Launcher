@@ -25,16 +25,15 @@ class Launcher:
         self.offset_x = 0
         self.offset_y = 8
         self.page = 0
-        self.per_page = 32
+        self.per_page = 33
         self.total_pages = 0
 
         # Determine the number of pages in the menu
-        pages = len(self.apps) / 33
-        if pages > int(pages):
-            pages = int(pages) + 1
-
-        self.total_pages = int(pages - 1)
+        self.setPageCount()
+        
+        # Fill the current page with items
         self.setCurrentPage()
+
         
 
 
@@ -203,16 +202,17 @@ class Launcher:
     # Adopt the menu items for the current active page
     # ----------------------------------------------------------------------
     def setCurrentPage(self):
+        
         # Clean up the menu item array for current page
         self.menu_items.clear()
-
+        
         # Build menu_items array from apps array, starting from offset
-        for i, app in enumerate(self.apps, start = self.current_page + (self.per_page * self.current_page)):
-
+        for i, app in enumerate(self.apps, start = (self.per_page * self.current_page)):
+        
             # clone the menu item from the apps array
             if i < len(self.apps):
                 self.menu_items.append(self.apps[i])
-            
+
             # Check if pointer exceeds the items for the current page
             if i >= (self.current_page * self.per_page + self.per_page):
                 break
@@ -233,4 +233,12 @@ class Launcher:
 
 
 
+    # ----------------------------------------------------------------------
+    # Determine the needed amount of pages
+    # ----------------------------------------------------------------------
+    def setPageCount(self):
+        pages = (len(self.apps)+1) / 33
+        if pages > int(pages):
+            pages = int(pages) + 1
 
+        self.total_pages = int(pages - 1)
