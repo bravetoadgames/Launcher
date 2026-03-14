@@ -1,94 +1,9 @@
 import os
+import ast
 
 class Launcher:
     
-    apps = [
-                # Internet
-                ['red', 'Brave', 'brave-browser', 1],
-                ['red', 'Chrome', 'google-chrome', 1],
-                ['red', 'FileZilla', 'filezilla', 1],
-                ['red', 'Firefox', 'firefox', 1],
-                ['red', 'Soulseek', '~/soulseek.sh', 1],
-                ['red', 'SyncTerm', 'syncterm', 1],
-                
-                # Emulators
-                ['green', 'Altirra', '~/altirra.sh', 1],
-                ['green', 'Atari 800XL', 'atari800', 1],
-                ['green', 'Commodore 64', 'flatpak run net.sf.VICE', 1],
-                ['green', 'Commodore Amiga', 'flatpak run com.blitterstudio.amiberry', 1],
-                ['green', 'Dosbox', 'dosbox', 1],
-
-                # Programming
-                ['blue', 'GitKraken', 'gitkraken', 1],
-                ['blue', 'Godot engine', '~/godot.sh', 1],
-                ['blue', 'Pico-8', '~/pico.sh', 1],
-                ['blue','Planify', 'flatpak run io.github.alainm23.planify', 1],
-                ['blue', 'Spyder', 'spyder', 1],
-                ['blue', 'Unity hub', 'unityhub', 1],
-
-                # Editing tools
-                ['yellow', 'Aseprite', '~/.steam/steam/steamapps/common/Aseprite/aseprite', 1],
-                ['yellow', 'Audacity', 'audacity', 1],
-                ['yellow', 'Blender', 'blender', 1],
-                ['yellow', 'Krita','krita', 1],
-                ['yellow', 'MagicaVoxel', '~/magicavoxel.sh', 1],
-                ['yellow', 'Milkytracker', 'milkytracker', 1],
-                ['yellow', 'OBS video recording','obs', 1],
-                ['yellow', 'Openshot video', 'openshot-qt', 1],
-                ['yellow', 'VCV Rack 2', '~/rack.sh', 1],
-
-                # Media 
-                ['cyan', 'MOC mediaplayer', 'gnome-terminal -- mocp', 0],
-                ['cyan', 'Shortwave radio', 'shortwave', 1],
-                ['cyan', 'Spotify', 'spotify', 1],
-                ['cyan', 'Strawberry', 'strawberry', 1],
-                ['cyan', 'VLC player', 'vlc', 1],
-                
-                # Games
-                ['purple', 'DCSS', '~/dcss.sh', 1],
-                ['purple', 'Open TTD', 'openttd', 1],
-                ['purple', 'Palapeli', 'palapeli', 1],
-                ['purple', 'Poker TH', 'pokerth', 1],
-                ['purple', 'RPG in a Box', '~/.steam/steam/steamapps/common/RPG\ in\ a\ Box/rpginabox', 1],
-                ['purple', 'Rolling line', 'wine ~/.steam/steam/steamapps/common/Rolling\ Line/RollingLine.exe', 1],
-                ['purple', 'Songs of Syx', '~/.steam/steam/steamapps/common/Songs\ of\ Syx/songsofsyx', 1],
-                ['purple', 'Sophie\'s dice', '~/.steam/steam/steamapps/common/Sophies\ Dice/Sophies\ Dice.x86_64', 1],
-                ['purple', 'Sudoku', 'gnome-terminal -- sudoku', 0],
-                ['purple', 'Transport Fever 2', '~/tf2.sh', 1],
-                ['purple', 'Ultimate Racing 2D', 'wine ~/.steam/steam/steamapps/common/Ultimate\ Racing\ 2D/Ultimate_Racing_2D.exe', 1],
-                
-                # Gaming portals
-                ['red', 'Heroic launcher', 'flatpak run com.heroicgameslauncher.hgl', 1],
-                ['red', 'Steam', 'steam', 1],
-                
-                # Utilities
-                ['green', 'Baobab disk analyzer', 'baobab', 1],
-                ['green', 'BpyTop sysmon', 'gnome-terminal -- bpytop', 0],
-                ['green', 'GcStar database', 'gcstar', 1],
-                ['green', 'Gnome terminal', 'gnome-terminal --working-directory=~/', 1],
-                ['green', 'KeePass', 'keepass2', 1],
-                ['green', 'Puddletag', 'puddletag', 1],
-                ['green', 'Settings', 'gnome-control-center', 1],
-                ['green', 'Terminator', 'terminator --working-directory=~/', 1],
-
-                # Other tools
-                ['blue', 'Cool retro term', 'cool-retro-term', 1],
-                ['blue', 'Matrix fx', 'gnome-terminal -- cmatrix', 0],
-                ['blue', 'VM setup', 'gnome-terminal -- ~/Ctools/vm.sh', 0],
-                ['blue', 'VirtualBox', 'virtualbox', 1],
-
-                # AI tools
-                ['yellow', 'AI model Dee', 'gnome-terminal -- ~/./aiDee.sh', 0],
-                ['yellow', 'AI model Gemma3:1b', 'gnome-terminal -- ~/./aiGemma31b.sh', 0],
-                ['yellow', 'AI model Gemma3:4b', 'gnome-terminal -- ~/./aiGemma34b.sh', 0],
-                ['yellow', 'AI model Mistral', 'gnome-terminal -- ~/./aiMistral.sh', 0],
-                ['yellow', 'AI model Simone', 'gnome-terminal -- ~/./aiSimone.sh', 0],
-
-                # Office tools
-                ['cyan', 'Calculator', 'gnome-calculator', 1],
-                ['cyan', 'LibreOffice Calc', 'localc', 1],
-                ['cyan', 'LibreOffice Writer', 'lowriter', 1],
-           ]
+    apps = []
 
     menu_key = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'A', 'B',
                 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
@@ -96,11 +11,12 @@ class Launcher:
 
 
 
-
     # ----------------------------------------------------------------------
     # Initialize Launcher class
     # ----------------------------------------------------------------------
     def __init__(self):
+        # Read datafile
+        self.readData()
         
         # Define instance variables
         self.current_page = 0
@@ -109,16 +25,15 @@ class Launcher:
         self.offset_x = 0
         self.offset_y = 8
         self.page = 0
-        self.per_page = 32
+        self.per_page = 33
         self.total_pages = 0
 
         # Determine the number of pages in the menu
-        pages = len(self.apps) / 33
-        if pages > int(pages):
-            pages = int(pages) + 1
-
-        self.total_pages = int(pages - 1)
+        self.setPageCount()
+        
+        # Fill the current page with items
         self.setCurrentPage()
+
         
 
 
@@ -212,7 +127,27 @@ class Launcher:
                 self.setApplication(i)
 
 
-
+    def readData(self):
+        with open('data/programs.dat', 'r') as file:
+            for line in file:
+                line = line.strip()
+                # Remove the outer brackets and split by comma
+                inner = line[1:-1]
+                # Parse individual elements
+                items = []
+                for item in inner.split(','):
+                    item = item.strip().strip("'\"")
+                    # Convert numbers
+                    if item.isdigit():
+                        items.append(int(item))
+                    else:
+                        try:
+                            items.append(float(item))
+                        except ValueError:
+                            items.append(item)
+                self.apps.append(items)
+        
+        
     # ----------------------------------------------------------------------
     # Launch a selected program
     # ----------------------------------------------------------------------
@@ -267,16 +202,17 @@ class Launcher:
     # Adopt the menu items for the current active page
     # ----------------------------------------------------------------------
     def setCurrentPage(self):
+        
         # Clean up the menu item array for current page
         self.menu_items.clear()
-
+        
         # Build menu_items array from apps array, starting from offset
-        for i, app in enumerate(self.apps, start = self.current_page + (self.per_page * self.current_page)):
-
+        for i, app in enumerate(self.apps, start = (self.per_page * self.current_page)):
+        
             # clone the menu item from the apps array
             if i < len(self.apps):
                 self.menu_items.append(self.apps[i])
-            
+
             # Check if pointer exceeds the items for the current page
             if i >= (self.current_page * self.per_page + self.per_page):
                 break
@@ -297,4 +233,12 @@ class Launcher:
 
 
 
+    # ----------------------------------------------------------------------
+    # Determine the needed amount of pages
+    # ----------------------------------------------------------------------
+    def setPageCount(self):
+        pages = (len(self.apps)+1) / 33
+        if pages > int(pages):
+            pages = int(pages) + 1
 
+        self.total_pages = int(pages - 1)
