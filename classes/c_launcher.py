@@ -7,7 +7,7 @@ class Launcher:
 
     menu_key = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'A', 'B',
                 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
-                'O', 'P', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']           
+                'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']           
 
 
 
@@ -23,9 +23,9 @@ class Launcher:
         self.launcher_exit = False
         self.menu_items = []
         self.offset_x = 0
-        self.offset_y = 8
+        self.offset_y = 7
         self.page = 0
-        self.per_page = 33
+        self.per_page = 36
         self.total_pages = 0
 
         # Determine the number of pages in the menu
@@ -64,7 +64,7 @@ class Launcher:
 
             y = y + 1
 
-            if y > self.offset_y + 10:
+            if y > self.offset_y + 11:
                 y = self.offset_y
                 if x == 0:
                     x = 27
@@ -72,7 +72,7 @@ class Launcher:
                     x = 54
 
         self.showPositionalPrint(0, 20, self.showLine())
-        print(self.setColor('red') + 'Q - Quit' + self.setColor('reset'))
+        print(self.setColor('red') + 'type EXIT to quit' + self.setColor('reset'))
         
         if self.total_pages > 0:
             self.showPositionalPrint(20, 21, 'Previous page [,] - Next page [.] ')
@@ -110,7 +110,7 @@ class Launcher:
         i = i.upper()
 
         if i != "":
-            if i == "Q":
+            if i == "EXIT":
                 os.system('clear')
                 self.launcher_exit = True
             elif i == ".":
@@ -237,7 +237,7 @@ class Launcher:
     # Determine the needed amount of pages
     # ----------------------------------------------------------------------
     def setPageCount(self):
-        pages = (len(self.apps)+1) / 33
+        pages = (len(self.apps)+1) / 36
         if pages > int(pages):
             pages = int(pages) + 1
 
