@@ -148,6 +148,7 @@ class Launcher:
                 self.apps.append(items)
         
         
+        
     # ----------------------------------------------------------------------
     # Launch a selected program
     # ----------------------------------------------------------------------
@@ -159,6 +160,7 @@ class Launcher:
                     os.system('nohup ' + item[2] + ' > /dev/null 2>&1 &')
                 else:
                     os.system(item[2])
+
                 break
 
 
@@ -220,6 +222,7 @@ class Launcher:
         self.setMenuKeys()
 
 
+
     # ----------------------------------------------------------------------
     # Assign menu keys to current page
     # ----------------------------------------------------------------------
@@ -242,3 +245,5 @@ class Launcher:
             pages = int(pages) + 1
 
         self.total_pages = int(pages - 1)
+
+
